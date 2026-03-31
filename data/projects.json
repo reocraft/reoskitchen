@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "CollegeMiner",
+    "description": "A personalized assistant for high school students that help find Universities/Colleges that are best tailored for a given individual. (It may take a minute for the website to launch)",
+    "tech": [],
+    "image": "images/collegeminer.png",
+    "link": "https://collegeminer.onrender.com/",
+    "github": "https://github.com/reocraft/collegeminer",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "GrinZip",
+    "description": "A file compression/decompression utility using Huffman coding to encode files into a custom .grin format and decode them back to their original state. Built as a CSC 207 project at Grinnell College.",
+    "tech": ["Java", "Huffman Coding", "Maven"],
+    "github": "https://github.com/reocraft/GrinZip",
+    "featured": false
+  }
+]

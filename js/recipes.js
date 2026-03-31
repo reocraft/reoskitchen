@@ -1,0 +1,213 @@
+const recipeEmojis = {
+  Italian: '🍝', Pasta: '🍝', Japanese: '🍜', Seafood: '🐟',
+  Korean: '🥘', Chicken: '🍗', Baking: '🍪', Dessert: '🍪',
+  Soup: '🍜', default: '🍽️'
+};
+
+function getRecipeEmoji(tags) {
+  for (const tag of tags) {
+    if (recipeEmojis[tag]) return recipeEmojis[tag];
+  }
+  return recipeEmojis.default;
+}
+
+function toggleIngredients(btn) {
+  const card = btn.closest('.r-card');
+  const ingredientsList = card.querySelector('.r-card-ingredients');
+  const isOpen = ingredientsList.classList.contains('visible');
+
+  ingredientsList.classList.toggle('visible', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  card.classList.toggle('expanded', !isOpen);
+  btn.querySelector('.label').textContent = isOpen ? btn.dataset.label : 'Hide';
+}
+
+function loadRecipes() {
+  const grid = document.getElementById('recipes-grid');
+
+  const recipes = [
+  {
+    "id": 1,
+    "image": "images/oyakodon.jpeg",
+    "title": "Oyakodon",
+    "description": "A nutricious and delicious bowl! A simple yet comforting meal that reminds me of Japan. It is even super rich in proteins and low in fat so it's great before a workout!",
+    "tags": ["Japanese", "Rice Bowl", "Quick"],
+    "ingredients": [
+      "1/4 onion",
+      "About 150g chicken thigh",
+      "A bit of vegetable oil",
+      "2 eggs",
+      "Cooked rice to serve",
+      "Sauce: 40mL 3x mentsuyu (noodle soup base) + 35mL water"
+    ],
+    "steps": [
+      "Chop the onion.",
+      "Cut the chicken thigh into bite-size pieces.",
+      "Heat a bit of vegetable oil in a pan over medium heat and add the chicken. Cook for a little bit.",
+      "Add the onions, then pour in the sauce (mentsuyu + water).",
+      "Lightly mix one egg and pour it into the pan. Lower the heat and put the lid on.",
+      "Wait about 45 seconds, then add the second lightly beaten egg.",
+      "Wait another minute or so until the egg is just set.",
+      "Serve over a bowl of rice."
+    ],
+    "featured": true
+  },
+  {
+    "id": 2,
+    "image": "images/tonteki.jpg",
+    "title": "Tonteki (Japanese Pork Steak)",
+    "description": "A hearty pork steak from Mie Prefecture, seared to perfection and glazed in a rich garlic soy sauce. Bold, savory, and incredibly satisfying.",
+    "tags": ["Japanese", "Pork", "Quick"],
+    "ingredients": [
+      "1 pork chop of your choice",
+      "Fine salt and pepper",
+      "Potato starch",
+      "Olive oil (generous amount)",
+      "1/2 onion",
+      "1 tbsp sugar",
+      "1 tbsp soy sauce",
+      "1 tbsp cooking alcohol (sake)",
+      "1 tbsp ketchup",
+      "Minced garlic to taste"
+    ],
+    "steps": [
+      "Season both sides of the pork chop with fine salt and pepper. Let it sit for a bit.",
+      "Wipe off any excess liquid from the pork with a paper towel.",
+      "Coat the meat evenly with potato starch.",
+      "Heat a generous amount of olive oil in a frying pan over medium heat and add the pork.",
+      "Chop the onion and add it to the pan alongside the meat.",
+      "Once the meat is just cooked through, add the sugar, soy sauce, cooking alcohol, ketchup, and minced garlic.",
+      "Let the alcohol cook off, then coat the entire meat with the sauce."
+    ],
+    "featured": false
+  },
+  {
+    "id": 3,
+    "image": "images/napolitan.jpeg",
+    "title": "Napolitan (Japanese Style Ketchup Spaghetti)",
+    "description": "A nostalgic Japanese pasta dish that has nothing to do with Naples but everything to do with comfort. Spaghetti tossed with ketchup, bacon/sausage, and vegetables in a sweet-savory sauce that somehow just works.",
+    "tags": ["Japanese", "Pasta", "Quick"],
+    "ingredients": [
+      "Spaghetti",
+      "Salt",
+      "1/2 onion",
+      "1/2 bell pepper",
+      "Bacon",
+      "Olive oil",
+      "Salt and pepper",
+      "Ketchup (generous amount)"
+    ],
+    "steps": [
+      "Add salt to a pot of water and bring to a boil.",
+      "Once boiling, add the spaghetti and cook until al dente.",
+      "While the pasta is boiling, chop the onion, bell pepper, and bacon.",
+      "Heat olive oil in a frying pan, add the chopped vegetables and bacon. Season with salt and pepper and stir fry.",
+      "Add a generous amount of ketchup and continue stir frying.",
+      "Once the spaghetti is done, add it to the pan and add more ketchup.",
+      "Continue stir frying until the sourness of the ketchup has cooked off. Serve and enjoy!"
+    ],
+    "featured": false
+  },
+  {
+    "id": 4,
+    "image": "images/kakuni.jpeg",
+    "title": "Braised Pork",
+    "description": "Tender, melt-in-your-mouth pork slow-cooked in a rich, savory braising liquid until deeply flavorful and fall-apart soft.",
+    "tags": ["Pork", "Comfort Food"],
+    "ingredients": [
+      "Pork belly (block)",
+      "4 tbsp soy sauce",
+      "3 tbsp mirin",
+      "4 tbsp cooking alcohol (sake)",
+      "3 tbsp sugar",
+      "300ml water"
+    ],
+    "steps": [
+      "Cut the pork belly block into smaller chunks.",
+      "Boil the pork in a pot for over an hour, or 45 minutes in a pressure cooker.",
+      "Discard the boiling water.",
+      "Add the soy sauce, mirin, sake, sugar, and 300ml of water to the pot with the pork.",
+      "Braise until the sauce thickens and most of the water has reduced."
+    ],
+    "featured": false
+  },
+  {
+    "id": 5,
+    "image": "images/dakgalbi.jpeg",
+    "title": "Korean Cheese Dakgalbi",
+    "description": "Spicy stir-fried chicken with chewy rice cakes, cabbage, and sweet potato in a bold gochujang sauce — topped with a blanket of melted cheese that takes it to another level.",
+    "tags": ["Korean", "Chicken", "Spicy", "Cheese"],
+    "ingredients": [
+      "500g chicken thighs",
+      "200g tteok (rice cakes)",
+      "1/4 head napa cabbage",
+      "1 sweet potato",
+      "3 tbsp gochujang",
+      "2 tbsp soy sauce",
+      "1 tbsp sesame oil",
+      "1 tbsp sugar",
+      "3 cloves garlic",
+      "1 tsp ginger",
+      "Mozzarella cheese (generous amount)"
+    ],
+    "steps": [
+      "Cut the chicken thighs into bite-size pieces. Mix with gochujang, soy sauce, sesame oil, sugar, minced garlic, and ginger. Let it marinate for at least 15 minutes.",
+      "Cut the sweet potato into cubes and the napa cabbage into rough chunks.",
+      "Heat oil in a large pan over medium heat. Add the sweet potato first and cook for a few minutes as it takes the longest.",
+      "Add the marinated chicken and tteok to the pan and stir fry everything together.",
+      "Once the chicken is mostly cooked, add the cabbage and continue stir frying until everything is cooked through and the sauce is nicely caramelized.",
+      "Push everything to the edges of the pan to create a well in the center. Add a generous amount of mozzarella cheese to the center.",
+      "Cover with a lid and let the cheese melt on low heat. Once melted, it's ready to serve — dip and pull!"
+    ],
+    "featured": false
+  }
+];
+
+    grid.innerHTML = recipes.map(r => {
+      const emoji = getRecipeEmoji(r.tags);
+      const hasSteps = r.steps && r.steps.length > 0;
+      const btnLabel = hasSteps ? 'Ingredients & Steps' : 'Ingredients';
+
+      const ingredients = r.ingredients
+        .map(ing => `<div class="r-ingredient">${ing}</div>`)
+        .join('');
+
+      const stepsHtml = hasSteps
+        ? `<div class="r-section-label">Steps</div>
+            ${r.steps.map((step, i) => `<div class="r-step"><span class="r-step-num">${i + 1}</span>${step}</div>`).join('')}`
+        : '';
+
+      const imgHtml = r.image
+        ? `<img src="${r.image}" alt="${r.title}" class="r-card-img" />`
+        : `<div class="r-card-img-placeholder">
+             <span class="img-icon">${emoji}</span>
+             <span>add a photo of this dish</span>
+           </div>`;
+
+      return `
+        <div class="r-card">
+          ${imgHtml}
+          <div class="r-card-top">
+            <div class="r-card-emoji">${emoji}</div>
+            ${r.featured ? '<span class="r-featured-badge">⭐ Featured</span>' : ''}
+          </div>
+          <div class="r-card-title">${r.title}</div>
+          <div class="r-card-desc">${r.description}</div>
+          <div class="r-card-tags">
+            ${r.tags.map(t => `<span class="r-tag">${t}</span>`).join('')}
+          </div>
+          <button class="r-card-expand-btn" data-label="${btnLabel}" onclick="toggleIngredients(this)">
+            <span class="label">${btnLabel}</span>
+            <span class="arrow">▾</span>
+          </button>
+          <div class="r-card-ingredients">
+            <div class="r-section-label">Ingredients</div>
+            ${ingredients}
+            ${stepsHtml}
+          </div>
+        </div>
+      `;
+    }).join('');
+}
+
+loadRecipes();
