@@ -393,17 +393,54 @@
 
     <div class="panel-left">
       <div class="section-header-tech">Featured Project</div>
-      <a id="featured-project" href="#" target="_blank" rel="noopener" class="project-card">
-        <!-- Filled by main.js -->
-        <div class="project-card-title">Loading…</div>
+      <a id="featured-project" href="https://collegeminer.onrender.com/" target="_blank" rel="noopener" class="project-card">
+        <img src="images/collegeminer.png" alt="CollegeMiner" class="card-img-tech" />
+        <div class="project-card-title">CollegeMiner</div>
+        <div class="project-card-desc">A personalized assistant for high school students that help find Universities/Colleges that are best tailored for a given individual. (It may take a minute for the website to launch)</div>
+        <div class="project-card-tech"></div>
+        <div class="project-card-links">
+          <div class="project-card-link">Visit Website</div>
+          <div class="project-card-link project-card-github" onclick="event.preventDefault();event.stopPropagation();window.open('https://github.com/reocraft/collegeminer','_blank')">GitHub</div>
+        </div>
       </a>
     </div>
 
     <div class="panel-right">
       <div class="section-header-fun">🌟 Featured Recipe</div>
       <div id="featured-recipe" class="recipe-card">
-        <!-- Filled by main.js -->
-        <div class="recipe-card-title">Loading…</div>
+        <img src="images/oyakodon.jpeg" alt="Oyakodon" class="card-img-fun" />
+        <div class="recipe-card-header">
+          <div class="recipe-card-title">Oyakodon</div>
+          <div class="recipe-card-emoji">🍜</div>
+        </div>
+        <div class="recipe-card-desc">A nutricious and delicious bowl! A simple yet comforting meal that reminds me of Japan. It is even super rich in proteins and low in fat so it's great before a workout!</div>
+        <div class="recipe-card-tags">
+          <span class="recipe-tag">Japanese</span>
+          <span class="recipe-tag">Rice Bowl</span>
+          <span class="recipe-tag">Quick</span>
+        </div>
+        <button class="recipe-card-expand-btn" data-label="Ingredients &amp; Steps" onclick="toggleRecipeDetails(this)">
+          <span class="label">Ingredients &amp; Steps</span>
+          <span class="arrow">▾</span>
+        </button>
+        <div class="recipe-card-details">
+          <div class="recipe-detail-label">Ingredients</div>
+          <div class="recipe-ingredient">1/4 onion</div>
+          <div class="recipe-ingredient">About 150g chicken thigh</div>
+          <div class="recipe-ingredient">A bit of vegetable oil</div>
+          <div class="recipe-ingredient">2 eggs</div>
+          <div class="recipe-ingredient">Cooked rice to serve</div>
+          <div class="recipe-ingredient">Sauce: 40mL 3x mentsuyu (noodle soup base) + 35mL water</div>
+          <div class="recipe-detail-label">Steps</div>
+          <div class="recipe-step"><span class="recipe-step-num">1</span>Chop the onion.</div>
+          <div class="recipe-step"><span class="recipe-step-num">2</span>Cut the chicken thigh into bite-size pieces.</div>
+          <div class="recipe-step"><span class="recipe-step-num">3</span>Heat a bit of vegetable oil in a pan over medium heat and add the chicken. Cook for a little bit.</div>
+          <div class="recipe-step"><span class="recipe-step-num">4</span>Add the onions, then pour in the sauce (mentsuyu + water).</div>
+          <div class="recipe-step"><span class="recipe-step-num">5</span>Lightly mix one egg and pour it into the pan. Lower the heat and put the lid on.</div>
+          <div class="recipe-step"><span class="recipe-step-num">6</span>Wait about 45 seconds, then add the second lightly beaten egg.</div>
+          <div class="recipe-step"><span class="recipe-step-num">7</span>Wait another minute or so until the egg is just set.</div>
+          <div class="recipe-step"><span class="recipe-step-num">8</span>Serve over a bowl of rice.</div>
+        </div>
       </div>
     </div>
 
